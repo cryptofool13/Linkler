@@ -1,0 +1,7 @@
+extends ../index.pug
+
+
+block content
+  each link in links
+    li
+      a(href=link.url)= link.name
