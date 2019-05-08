@@ -10,6 +10,7 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.set("view engine", "pug");
 server.set("views", path.join(__dirname, "views"));
+server.use(express.static("public"));
 
 server.get("/", (req, res) => {
   res.send('you hit "/"\ntry "/home"');
@@ -27,11 +28,9 @@ server.post("/links/new", (req, res) => {
     db.addLink(data.name, data.url);
     res.redirect("/home");
   }
-  // console.log(data);
-  // if(data.hasOwnProperty('name'))
 });
+
 server.post("/links/del", (req, res) => {
-  // console.log(Object.keys(req.body));
   for (let name of Object.keys(req.body)) {
     db.deleteLink(name);
   }

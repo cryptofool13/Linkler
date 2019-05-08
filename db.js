@@ -1,4 +1,5 @@
 const fs = require("fs");
+
 // DATABASE INITIALIZATION
 //
 // const dbTemplate = {
@@ -28,7 +29,6 @@ function addLink(name, url) {
         console.log(err);
         return err;
       }
-      console.log("db updated");
     });
   });
 }
@@ -57,11 +57,9 @@ function deleteLink(name) {
       if (!links[i]) continue;
       if (links[i].name === name) {
         index = i;
-        // console.log(links[i]);
       }
     }
     if (index == links.length - 1) {
-      console.log("popped");
       db.links.pop();
     } else {
       delete links[index];
@@ -79,10 +77,6 @@ function deleteLink(name) {
   });
 }
 
-// addLink("c++", "www.cplusplus.org");
-// deleteLink("test");
-// setTimeout(() => getLinks(), 3000);
-// getLinks();
 module.exports = {
   addLink,
   getLinks,

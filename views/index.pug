@@ -1,24 +1,39 @@
 html
   head
-    title= Linkler
+    title Linkler
+    link(rel="stylesheet", href="/styles/style.css")
   body
-    h1 Welcome to Linkler
-    h2 Keep inportant links where you can find them!
-    fieldset
-      legend Link Info
-      form( action='/links/new' method="post")
-        label(for="name") Name
-        input(type="text", name="name" autocomplete='off')
-        br
-        label(for="url") Url
-        input(type="text", name="url" autocomplete='off')
-        input(type="submit", value="Add Link")
-    hr
-    ul
-      form(action="/links/del", method="post")
-        for link in links
-          if link != null
-            li
-              a(href="http://"+link.url, target='_blank')= link.name
-              input(type="checkbox", name=link.name)
-        input(type="submit", value="Delete")
+    .header
+      h1.title Welcome to Linkler
+      h2.desc Keep inportant links where you can find them!
+    .main
+      fieldset.form-field
+        legend 
+          h3 Link Info
+        form(id='form' action='/links/new' method="post")
+          label(for="name", class='nameLab') Name
+          br
+          input(type="text",class='name', name="name", placeholder="Webstie's name", autocomplete='off')
+          br
+          
+          label(for="url", class='urlLab') Url
+          br
+          input(type="text", class='url', placeholder="Website's url (not including 'http://')", name="url" autocomplete='off')
+          br
+          
+          input(type="submit", class='subButt', value="Add Link")
+      .links
+        fieldset
+          legend  
+            h3 Links
+          ul
+            form(action="/links/del", method="post")
+              if links[0]
+                for link in links
+                  if link != null
+                    li
+                      input(type="checkbox", name=link.name)
+                      a(href="http://"+link.url, target='_blank')= link.name
+              else
+                li.warning Add links using the form to the right!     
+              input(type="submit", value="Delete")
