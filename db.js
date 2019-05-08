@@ -33,14 +33,14 @@ function addLink(name, url) {
   });
 }
 
-function getLinks() {
+function getLinks(cb) {
   fs.readFile("./db.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
       return err;
     }
     let links = JSON.parse(data).links;
-    console.log(links);
+    return cb(links);
   });
 }
 
