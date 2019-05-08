@@ -4,8 +4,21 @@ html
   body
     h1 Welcome to Linkler
     h2 Keep inportant links where you can find them!
+    fieldset
+      legend Link Info
+      form( action='/links/new' method="post")
+        label(for="name") Name
+        input(type="text", name="name" autocomplete='false')
+        br
+        label(for="url") Url
+        input(type="text", name="url")
+        input(type="submit", value="Add Link")
+    hr
     ul
-      for link in links
-        if link != null
-          li
-            a(href="http://"+link.url, target='_blank')= link.name
+      form(action="/links/del", method="post")
+        for link in links
+          if link != null
+            li
+              a(href="http://"+link.url, target='_blank')= link.name
+              input(type="checkbox", name=link.name)
+        input(type="submit", value="Delete")
