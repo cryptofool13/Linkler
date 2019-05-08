@@ -8,10 +8,10 @@ html
       legend Link Info
       form( action='/links/new' method="post")
         label(for="name") Name
-        input(type="text", name="name" autocomplete='false')
+        input(type="text", name="name" autocomplete='off')
         br
         label(for="url") Url
-        input(type="text", name="url")
+        input(type="text", name="url" autocomplete='off')
         input(type="submit", value="Add Link")
     hr
     ul
